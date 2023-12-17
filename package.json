@@ -1,0 +1,23 @@
+{
+  "name": "abracadabra",
+  "displayName": "Abracadabra",
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "abracadabra.doMagic",
+        "title": "Do Magic"
+      }
+    ]
+  },
+  "activationEvents": [
+    "onCommand:abracadabra.doMagic"
+  ],
+  "dependencies": {
+    "ws": "^8.15.1"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.58.0"
+  }
+}

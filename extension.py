@@ -24,19 +24,29 @@ async def do_magic(ctx):
         # check if file name is imported
         with open(file_path, 'r') as f:
             content = f.read()
-            if template1 in content or template2 in content:
+            import subprocess
+            out, err = subprocess.Popen(['python',  file_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
+            if err:
+                err = err.decode()
+                vscode.log(err)
+                if template1 in err or template2 in err:
                 # rename file
-                if 0:
-                    new_path = os.path.join(file_directory, f'my_{file_name}')
-                    cmd =f"vscode.workspace.fs.rename( vscode.Uri.file('{file_path}'), vscode.Uri.file('{new_path}'))"
-                    vscode.log(cmd)
-                    await ctx.ws.run_code(cmd,  thenable=False)
-                msg = 'Don\'t use module name as file name!'
+                    if 0:
+                        new_path = os.path.join(file_directory, f'my_{file_name}')
+                        cmd =f"vscode.workspace.fs.rename( vscode.Uri.file('{file_path}'), vscode.Uri.file('{new_path}'))"
+                        vscode.log(cmd)
+                        await ctx.ws.run_code(cmd,  thenable=False)
+                    msg = f'Don\'t use the module name {file_name_} as file name!'
+                else:
+                    msg = 'Need more Abracadabra! 🧙‍♂️ Join the OverflowAI Search waitlist '
+                    url ='https://stackoverflow.co/labs/search'
+                    import webbrowser
+                    webbrowser.open(url)
             else:
-                msg = 'Need more Abracadabra! 🧙‍♂️ Join the OverflowAI Search waitlist '
-                url ='https://stackoverflow.co/labs/search'
-                import webbrowser
-                webbrowser.open(url)
+                out = out.decode()
+                vscode.log(out)
+                if "error" in out:
+                    msg = 'Errors should never pass silently.\nRaise your voice!'
 
         # output_channel = await ctx.ws.run_code('')
 

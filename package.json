@@ -12,15 +12,12 @@
       }
     ]
   },
-  "activationEvents": [
-    "onCommand:abracadabra.doMagic"
-  ],
   "dependencies": {
     "ws": "^8.15.1"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
-    "vscode": "^1.58.0"
+    "vscode": "^1.75.0"
   },
   "repository": {
     "type": "git",

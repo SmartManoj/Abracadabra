@@ -29,7 +29,7 @@ async def do_magic(ctx):
             if err:
                 err = err.decode()
                 vscode.log(err)
-                if template1 in err or template2 in err:
+                if template1 in err or template2 in err or '(most likely due to a circular import)' in err:
                 # rename file
                     if 0:
                         new_path = os.path.join(file_directory, f'my_{file_name}')
